@@ -19,7 +19,7 @@
   "engines": {
     "node": ">=18"
   },
-  "files": ["extensions", "assets", "README.md", "package.json"],
+  "files": ["extensions", "assets", "README.md", "LICENSE", "package.json"],
   "pi": {
     "extensions": ["./extensions"],
     "image": "https://raw.githubusercontent.com/ai2ys/toast-meter/main/assets/preview.png"
