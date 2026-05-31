@@ -1,5 +1,7 @@
 # toast-meter
 
+Playful Pi footer extension for context usage.
+
 License: MIT
 
 Author: Sylvia Schmitt
