@@ -1,6 +1,6 @@
 # toast-meter
 
-Playful Pi package for a footer context-usage indicator.
+A playful Pi footer indicator for context usage that tracks the agent’s journey from smart zone to dumb zone as the context window fills up.
 
 License: MIT  
 Author: Sylvia Schmitt
@@ -27,7 +27,7 @@ Git:
 
 ```json
 {
-  "packages": ["git:github.com/ai2ys/toast-meter@v0.1.0"]
+  "packages": ["git:github.com/ai2ys/toast-meter@v0.1.2"]
 }
 ```
 
@@ -35,7 +35,7 @@ npm:
 
 ```json
 {
-  "packages": ["npm:toast-meter@0.1.0"]
+  "packages": ["npm:toast-meter@0.1.2"]
 }
 ```
 
@@ -43,8 +43,8 @@ Or via commands:
 
 ```bash
 pi install /absolute/path/to/toast-meter
-pi install git:github.com/ai2ys/toast-meter@v0.1.0
-pi install npm:toast-meter@0.1.0
+pi install git:github.com/ai2ys/toast-meter@v0.1.2
+pi install npm:toast-meter@0.1.2
 ```
 
 ## Example output
