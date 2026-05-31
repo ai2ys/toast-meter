@@ -12,7 +12,7 @@ type IndicatorConfig = {
 	refreshIntervalMs?: number;
 	showText?: boolean;
 	label?: string;
-	levels?: Partial<Record<1 | 2 | 3 | 4 | 5 | 6, number>>;
+	levels?: Partial<Record<1 | 2 | 3 | 4 | 5, number>>;
 };
 
 type Preset = {

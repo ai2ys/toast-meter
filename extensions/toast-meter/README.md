@@ -1,63 +1,24 @@
-# Context Usage Indicator
+# toast-meter extension
 
-Shows the current context usage in Pi's footer.
+This extension is part of the `toast-meter` Pi package.
 
-The name is a joke: it plays on "dumb as a brick" / "dumm wie Brot" as the context fills up.
+## Configuration
 
-## What it does
+Project overrides go in:
 
-- Reads `ctx.getContextUsage()`
-- Displays the current token count as `k`
-- Uses emoji levels to visualize the context getting fuller
-- Supports German and English presets
-
-## Config
+- `.pi/toast-meter.json`
 
 Package defaults live in:
 
-`extensions/toast-meter/config.default.json`
+- `config.default.json`
 
-Project overrides can be placed in:
-
-`.pi/toast-meter.json`
-
-Example:
-
-```json
-{
-  "mode": "en",
-  "showText": true,
-  "refreshIntervalMs": 2000,
-  "levels": {
-    "1": 80000,
-    "2": 100000,
-    "3": 120000,
-    "4": 140000,
-    "5": 150000
-  }
-}
-```
-
-## Options
+Supported options include:
 
 - `mode`: `"en"` or `"de"`
-- `showText`: show the label next to the value
-- `refreshIntervalMs`: update interval
-- `levels`: override thresholds for levels 1–5
+- `showText`: `true` or `false`
+- `refreshIntervalMs`: number
+- `levels`: thresholds for levels `1` to `5`
 
-## Presets
+See the main package README for installation, examples, and full configuration details:
 
-### `en`
-- label: `Dumb as a Brick`
-- joke: brains turn into bricks as the context gets worse
-
-### `de`
-- label: `Dumm wie Brot`
-- joke: brains turn into bread as the context gets worse
-
-## Notes
-
-- Level 0 is fixed in code.
-- If `levels` is omitted, the built-in defaults are used.
-- The extension renders in the footer via `setStatus()`.
-- Project config merges with package defaults.
+- [`../../README.md`](../../README.md)
