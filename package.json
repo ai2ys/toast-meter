@@ -1,10 +1,12 @@
 {
   "name": "toast-meter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Playful Pi footer indicator for context usage",
   "license": "MIT",
   "author": "Sylvia Schmitt",
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ai2ys/toast-meter.git"
@@ -19,9 +21,17 @@
   "engines": {
     "node": ">=18"
   },
-  "files": ["extensions", "assets", "README.md", "LICENSE", "package.json"],
+  "files": [
+    "extensions",
+    "assets",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
   "pi": {
-    "extensions": ["./extensions"],
+    "extensions": [
+      "./extensions"
+    ],
     "image": "https://raw.githubusercontent.com/ai2ys/toast-meter/main/assets/preview.png"
   },
   "peerDependencies": {
