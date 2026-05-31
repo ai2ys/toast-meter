@@ -1,0 +1,26 @@
+{
+  "name": "toast-meter",
+  "version": "0.1.0",
+  "description": "Pi footer indicator for context usage",
+  "license": "MIT",
+  "author": "Sylvia Schmitt",
+  "keywords": ["pi-package"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ai2ys/toast-meter.git"
+  },
+  "homepage": "https://github.com/ai2ys/toast-meter#readme",
+  "bugs": {
+    "url": "https://github.com/ai2ys/toast-meter/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": ["extensions", "README.md", "package.json"],
+  "pi": {
+    "extensions": ["./extensions"]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  }
+}
