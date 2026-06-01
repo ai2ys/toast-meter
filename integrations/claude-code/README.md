@@ -5,7 +5,7 @@ Alternative `toast-meter` integration for users who cannot use the Pi agent exte
 Example output:
 
 ```text
-~/project/toast-meter (main) 121k 🧠🧱🧱🧱 • Dumb as a Brick
+~/project/toast-meter (main) 121k 🧠🧱🧱🧱 • Dumb as a Brick • Sonnet 4.6 high
 ```
 
 ## Requirements
@@ -34,7 +34,7 @@ Example output:
    }
    ```
 
-3. Restart Claude Code.
+3. Changes take effect after the next interaction — no restart needed.
 
 ## Optional
 

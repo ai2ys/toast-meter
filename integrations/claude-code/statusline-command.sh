@@ -7,6 +7,8 @@ cwd="$(echo "$input" | jq -r '.cwd // .workspace.current_dir // empty')"
 [ -z "$cwd" ] && cwd="$(pwd)"
 
 total_tokens="$(echo "$input" | jq -r '.context_window.total_input_tokens // empty')"
+model="$(echo "$input" | jq -r '.model.display_name // empty')"
+effort="$(echo "$input" | jq -r '.effort.level // empty')"
 mode="${TOAST_METER_MODE:-en}"
 show_text="${TOAST_METER_SHOW_TEXT:-1}"
 
@@ -65,8 +67,22 @@ else
   fi
 fi
 
+meta=""
+if [ -n "$model" ]; then
+  meta=$(printf '\033[00;90m•\033[00m \033[00;36m%s\033[00m' "$model")
+  if [ -n "$effort" ]; then
+    meta=$(printf '%s \033[00;90m%s\033[00m' "$meta" "$effort")
+  fi
+fi
+
 if [ -n "$total_tokens" ] && [ "$total_tokens" -gt 0 ] 2>/dev/null; then
   printf '%s %s' "$prefix" "$(meter_for_tokens "$total_tokens")"
 else
-  printf '%s %s' "$prefix" "\033[00;33m?\033[00m \033[00;32m${icons[0]}\033[00m \033[00;90m•\033[00m \033[00;37m${label}\033[00m"
+  if [ "$show_text" = "0" ] || [ "$show_text" = "false" ]; then
+    printf '%s \033[00;33m?\033[00m \033[00;32m%s\033[00m' "$prefix" "${icons[0]}"
+  else
+    printf '%s \033[00;33m?\033[00m \033[00;32m%s\033[00m \033[00;90m•\033[00m \033[00;37m%s\033[00m' "$prefix" "${icons[0]}" "$label"
+  fi
 fi
+
+[ -n "$meta" ] && printf ' %s' "$meta"
