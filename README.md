@@ -13,6 +13,10 @@ Author: Sylvia Schmitt
 - Supports English and German presets
 - Lets projects override thresholds only
 
+## Alternative for Claude Code
+
+If you use Claude Code and cannot use the Pi agent extension, see the separate integration in [`integrations/claude-code/README.md`](integrations/claude-code/README.md).
+
 ## Install with Pi
 
 Local path:
