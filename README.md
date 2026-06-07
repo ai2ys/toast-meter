@@ -31,7 +31,7 @@ Git:
 
 ```json
 {
-  "packages": ["git:github.com/ai2ys/toast-meter@v0.1.2"]
+  "packages": ["git:github.com/ai2ys/toast-meter@v0.2.0"]
 }
 ```
 
@@ -39,7 +39,7 @@ npm:
 
 ```json
 {
-  "packages": ["npm:toast-meter@0.1.2"]
+  "packages": ["npm:toast-meter@0.2.0"]
 }
 ```
 
@@ -47,8 +47,8 @@ Or via commands:
 
 ```bash
 pi install /absolute/path/to/toast-meter
-pi install git:github.com/ai2ys/toast-meter@v0.1.2
-pi install npm:toast-meter@0.1.2
+pi install git:github.com/ai2ys/toast-meter@v0.2.0
+pi install npm:toast-meter@0.2.0
 ```
 
 ## Example output
@@ -61,7 +61,7 @@ pi install npm:toast-meter@0.1.2
 100k 🧠🧠🧱🧱 • Context Rot
 120k 🧠🧱🧱🧱 • Dumb Zone
 140k 🧱🧱🧱🧱 • Dumb as a Brick
-151k 🏠🔥 • House is on fire
+150k 🏠🔥 • House is on fire
 ```
 
 ### Deutsch
@@ -72,7 +72,7 @@ pi install npm:toast-meter@0.1.2
 100k 🧠🧠🍞🍞 • Context Rot
 120k 🧠🍞🍞🍞 • Dumb Zone
 140k 🍞🍞🍞🍞 • Dumm wie Brot
-151k 🏠🔥 • House is on fire
+150k 🏠🔥 • House is on fire
 ```
 
 ## Configuration

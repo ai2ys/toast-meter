@@ -1,6 +1,6 @@
 {
   "name": "toast-meter",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Pi footer/statusline token usage meter for AI coding agents, showing context window rot from smart zone to dumb zone",
   "license": "MIT",
   "author": "Sylvia Schmitt",
