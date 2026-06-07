@@ -14,34 +14,31 @@ show_text="${TOAST_METER_SHOW_TEXT:-1}"
 
 case "$mode" in
   de)
-    label="Dumm wie Brot"
+    labels=("Smart Zone" "Langsam bröckelt’s" "Context Rot" "Dumb Zone" "Dumm wie Brot" "House is on fire")
     icons=("🧠🧠🧠🧠" "🧠🧠🧠🍞" "🧠🧠🍞🍞" "🧠🍞🍞🍞" "🍞🍞🍞🍞" "🏠🔥")
     ;;
   *)
-    label="Dumb as a Brick"
+    labels=("Smart Zone" "Getting Toasty" "Context Rot" "Dumb Zone" "Dumb as a Brick" "House is on fire")
     icons=("🧠🧠🧠🧠" "🧠🧠🧠🧱" "🧠🧠🧱🧱" "🧠🧱🧱🧱" "🧱🧱🧱🧱" "🏠🔥")
     ;;
 esac
 
 thresholds=(80000 100000 120000 140000 150000)
-final_label="House is on fire"
 
 meter_for_tokens() {
   local tokens="$1"
   local icon="${icons[0]}"
+  local text_label="${labels[0]}"
   local i
 
   for i in "${!thresholds[@]}"; do
     if [ "$tokens" -ge "${thresholds[$i]}" ] 2>/dev/null; then
       icon="${icons[$((i + 1))]}"
+      text_label="${labels[$((i + 1))]}"
     fi
   done
 
   local k=$((tokens / 1000))
-  local text_label="$label"
-  if [ "$tokens" -ge "${thresholds[4]}" ] 2>/dev/null; then
-    text_label="$final_label"
-  fi
 
   if [ "$show_text" = "0" ] || [ "$show_text" = "false" ]; then
     printf '\033[00;33m%sk\033[00m \033[00;32m%s\033[00m' "$k" "$icon"
@@ -75,13 +72,13 @@ if [ -n "$model" ]; then
   fi
 fi
 
-if [ -n "$total_tokens" ] && [ "$total_tokens" -gt 0 ] 2>/dev/null; then
+if [ -n "$total_tokens" ] && [ "$total_tokens" -ge 0 ] 2>/dev/null; then
   printf '%s %s' "$prefix" "$(meter_for_tokens "$total_tokens")"
 else
   if [ "$show_text" = "0" ] || [ "$show_text" = "false" ]; then
     printf '%s \033[00;33m?\033[00m \033[00;32m%s\033[00m' "$prefix" "${icons[0]}"
   else
-    printf '%s \033[00;33m?\033[00m \033[00;32m%s\033[00m \033[00;90m•\033[00m \033[00;37m%s\033[00m' "$prefix" "${icons[0]}" "$label"
+    printf '%s \033[00;33m?\033[00m \033[00;32m%s\033[00m \033[00;90m•\033[00m \033[00;37m%s\033[00m' "$prefix" "${icons[0]}" "${labels[0]}"
   fi
 fi
 

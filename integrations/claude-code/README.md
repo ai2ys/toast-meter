@@ -5,7 +5,7 @@ Alternative `toast-meter` integration for users who cannot use the Pi agent exte
 Example output:
 
 ```text
-~/project/toast-meter (main) 121k 🧠🧱🧱🧱 • Dumb as a Brick • Sonnet 4.6 high
+~/project/toast-meter (main) 121k 🧠🧱🧱🧱 • Dumb Zone • Sonnet 4.6 high
 ```
 
 ## Requirements

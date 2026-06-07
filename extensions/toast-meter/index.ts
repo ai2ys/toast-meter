@@ -16,26 +16,25 @@ type IndicatorConfig = {
 };
 
 type Preset = {
-	label: string;
+	labels: [string, string, string, string, string, string];
 	icons: [string, string, string, string, string, string];
 	thresholds: [number, number, number, number, number];
 };
 
 const PRESETS: Record<NonNullable<IndicatorConfig["mode"]>, Preset> = {
 	de: {
-		label: "Dumm wie Brot",
+		labels: ["Smart Zone", "Langsam bröckelt’s", "Context Rot", "Dumb Zone", "Dumm wie Brot", "House is on fire"],
 		icons: ["🧠🧠🧠🧠", "🧠🧠🧠🍞", "🧠🧠🍞🍞", "🧠🍞🍞🍞", "🍞🍞🍞🍞", "🏠🔥"],
 		thresholds: [80e3, 100e3, 120e3, 140e3, 150e3],
 	},
 	en: {
-		label: "Dumb as a Brick",
+		labels: ["Smart Zone", "Getting Toasty", "Context Rot", "Dumb Zone", "Dumb as a Brick", "House is on fire"],
 		icons: ["🧠🧠🧠🧠", "🧠🧠🧠🧱", "🧠🧠🧱🧱", "🧠🧱🧱🧱", "🧱🧱🧱🧱", "🏠🔥"],
 		thresholds: [80e3, 100e3, 120e3, 140e3, 150e3],
 	},
 };
 
 const DEFAULT_MODE: NonNullable<IndicatorConfig["mode"]> = "en";
-const FINAL_STAGE_LABEL = "House is on fire";
 
 function readJsonConfig(configPath: string): IndicatorConfig {
 	try {
@@ -59,13 +58,13 @@ function readConfig(): IndicatorConfig {
 	};
 }
 
-function buildLevels(config: IndicatorConfig): { at: number; icon: string }[] {
+function buildLevels(config: IndicatorConfig): { at: number; icon: string; label: string }[] {
 	const mode = config.mode ?? DEFAULT_MODE;
 	const preset = PRESETS[mode];
 	const thresholds = preset.thresholds.map((fallback, index) => config.levels?.[(index + 1) as 1 | 2 | 3 | 4 | 5] ?? fallback);
 	return [
-		{ at: 0, icon: preset.icons[0] },
-		...thresholds.map((at, index) => ({ at, icon: preset.icons[index + 1] })),
+		{ at: 0, icon: preset.icons[0], label: preset.labels[0] },
+		...thresholds.map((at, index) => ({ at, icon: preset.icons[index + 1], label: preset.labels[index + 1] })),
 	];
 }
 
@@ -73,23 +72,21 @@ function formatStatus(ctx: ExtensionContext, config: IndicatorConfig): string {
 	const usage = ctx.getContextUsage();
 	const tokens = usage?.tokens ?? null;
 	const theme = ctx.ui.theme;
-	const mode = config.mode ?? DEFAULT_MODE;
-	const preset = PRESETS[mode];
-	const label = config.label ?? preset.label;
 	const levels = buildLevels(config);
+	const fallbackLabel = config.label ?? levels[0]?.label ?? "Smart Zone";
 
 	if (tokens === null) {
-		return theme.fg("muted", `${label}: ?`);
+		return theme.fg("muted", `${fallbackLabel}: ?`);
 	}
 
 	const k = Math.round(tokens / 1000);
 	const showText = config.showText ?? false;
-	const current = levels.reduce((acc, level) => (tokens >= level.at ? level.icon : acc), levels[0]?.icon ?? "🍞");
+	const current = levels.reduce((acc, level) => (tokens >= level.at ? level : acc), levels[0]);
 	const isFinalStage = tokens >= (levels[levels.length - 1]?.at ?? Number.MAX_SAFE_INTEGER);
 	const value = theme.fg("muted", `${k}k`);
-	const iconPart = theme.fg(isFinalStage ? "error" : tokens >= 100e3 ? "warning" : "success", current);
+	const iconPart = theme.fg(isFinalStage ? "error" : tokens >= 100e3 ? "warning" : "success", current?.icon ?? "🍞");
 	if (!showText) return `${value} ${iconPart}`;
-	const textLabel = isFinalStage ? FINAL_STAGE_LABEL : label;
+	const textLabel = config.label ?? current?.label ?? fallbackLabel;
 	return `${value} ${iconPart} ${theme.fg("dim", "•")} ${theme.fg("muted", textLabel)}`;
 }
 

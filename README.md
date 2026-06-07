@@ -56,16 +56,22 @@ pi install npm:toast-meter@0.1.2
 ### English
 
 ```text
-0k   🧠🧠🧠🧠 • Dumb as a Brick
-120k 🧠🧱🧱🧱 • Dumb as a Brick
+0k   🧠🧠🧠🧠 • Smart Zone
+80k  🧠🧠🧠🧱 • Getting Toasty
+100k 🧠🧠🧱🧱 • Context Rot
+120k 🧠🧱🧱🧱 • Dumb Zone
+140k 🧱🧱🧱🧱 • Dumb as a Brick
 151k 🏠🔥 • House is on fire
 ```
 
 ### Deutsch
 
 ```text
-0k   🧠🧠🧠🧠 • Dumm wie Brot
-120k 🧠🍞🍞🍞 • Dumm wie Brot
+0k   🧠🧠🧠🧠 • Smart Zone
+80k  🧠🧠🧠🍞 • Langsam bröckelt’s
+100k 🧠🧠🍞🍞 • Context Rot
+120k 🧠🍞🍞🍞 • Dumb Zone
+140k 🍞🍞🍞🍞 • Dumm wie Brot
 151k 🏠🔥 • House is on fire
 ```
 
@@ -78,6 +84,11 @@ Package defaults live here:
 Project override (optional):
 
 - `.pi/toast-meter.json`
+
+Supported modes:
+
+- `en` for English (default)
+- `de` for Deutsch
 
 Example override:
 
